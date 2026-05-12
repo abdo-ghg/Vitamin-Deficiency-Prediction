@@ -1,1 +1,48 @@
+# ─── IDE / Editors ───
 .idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ─── Python ───
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+*.egg
+dist/
+build/
+*.whl
+
+# ─── Virtual Environments ───
+.venv/
+venv/
+env/
+
+New v
+# ─── Jupyter Notebooks ───
+.ipynb_checkpoints/
+
+# ─── Model Artifacts ───
+*.pkl
+*.joblib
+*.h5
+
+# ─── OS Files ───
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Pytest / Coverage ───
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# ─── Logs ───
+*.log
+
+# ─── Environment Variables ───
+.env
+.env.local
