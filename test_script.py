@@ -17,6 +17,7 @@ def Preprocessing_c(path):
     # scaling done
     # feature selection  -> list names final features df[] done
     df= pd.read_csv(path)
+    print(df.head())
 # /////////////////////////////////////////////////
     bmi_edges = [0, 18.5, 24.9, 29.9, 100] 
     bmi_labels = ['Underweight', 'Normal', 'Overweight', 'Obese']
@@ -35,7 +36,10 @@ def Preprocessing_c(path):
         training_medians = pickle.load(f) 
     df[numerical_features] = df[numerical_features].fillna(training_medians)
 # //////////////////////////////////////////////
-    df['alcohol_consumption'] = df['alcohol_consumption'].fillna("Missing").astype(str)
+    categorical_features = ['alcohol_consumption', 'exercise_level', 'sun_exposure',
+                            'income_level', 'latitude_region', 'bmi_category', 'age_group',
+                            'gender', 'symptoms_list', 'diet_type', 'smoking_status']
+    df[categorical_features] = df[categorical_features].astype(object).fillna("Missing").astype(str)
     with open(os.path.join(BASE_DIR, 'symptoms_list_c.pkl'), 'rb') as f:
         training_symptoms = pickle.load(f)
     OE, NE, S, _, _, _, _, _, _ = read_pickles()
@@ -136,7 +140,10 @@ def Preprocessing_reg(path):
         training_medians = pickle.load(f) 
     df[numerical_features] = df[numerical_features].fillna(training_medians)
 # //////////////////////////////////////////////
-    df['alcohol_consumption'] = df['alcohol_consumption'].fillna("Missing").astype(str)
+    categorical_features = ['alcohol_consumption', 'exercise_level', 'sun_exposure',
+                            'income_level', 'latitude_region', 'bmi_category', 'age_group',
+                            'gender', 'symptoms_list', 'diet_type', 'smoking_status']
+    df[categorical_features] = df[categorical_features].fillna("Missing").astype(str)
     with open(os.path.join(BASE_DIR, 'symptoms_list_reg.pkl'), 'rb') as f:
         training_symptoms = pickle.load(f)
     df['symptoms_list'] = df['symptoms_list'].fillna('')
@@ -205,5 +212,5 @@ def run_models_reg(path):
 
 
 if __name__ == "__main__":
-    run_models(r'D:\machine project\Vitamin-Deficiency-Prediction\Data\synthetic_test_data.csv')
+    run_models(r'Data/synthetic_test_data.csv')
     # run_models_reg()
