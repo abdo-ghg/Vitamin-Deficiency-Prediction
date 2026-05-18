@@ -143,7 +143,7 @@ def Preprocessing_reg(path):
     categorical_features = ['alcohol_consumption', 'exercise_level', 'sun_exposure',
                             'income_level', 'latitude_region', 'bmi_category', 'age_group',
                             'gender', 'symptoms_list', 'diet_type', 'smoking_status']
-    df[categorical_features] = df[categorical_features].fillna("Missing").astype(str)
+    df[categorical_features] = df[categorical_features].astype(object).fillna("Missing").astype(str)
     with open(os.path.join(BASE_DIR, 'symptoms_list_reg.pkl'), 'rb') as f:
         training_symptoms = pickle.load(f)
     df['symptoms_list'] = df['symptoms_list'].fillna('')
